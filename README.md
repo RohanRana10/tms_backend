@@ -1,6 +1,6 @@
 # TMS - Task Management System
 
-Your Presonal Task Management System.
+Your Personal Task Management System.
 
 ## Table of Contents
 
@@ -14,9 +14,9 @@ A handy task management system in which users can create tasks for their referen
 
 ## Features
 
-Authentication using JSON Web Token.
-Password encryption using Bcrypt.js.
-Presistent cloud storage using MongoDb Atlas.
+- Authentication using JSON Web Token.
+- Password encryption using Bcrypt.js.
+- Presistent cloud storage using MongoDb Atlas.
 
 ## Installation
 
@@ -28,10 +28,10 @@ Before you begin, ensure you have the following installed on your machine:
 - [npm](https://www.npmjs.com/) (Node Package Manager)
 
 ### Clone the Repository
-git clone https://github.com/yourusername/yourrepository.git
-cd yourrepository
-npm install
 
+git clone https://github.com/yourusername/yourrepository.git  
+cd yourrepository  
+npm install  
 
 ## Setting up Environment Variables
 
@@ -39,4 +39,5 @@ npm install
 2. Replace the placeholder values with your actual JWT secret and database URL.
 
 ## Run the Application
+
 npm start
