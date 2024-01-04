@@ -10,16 +10,16 @@ router.post('/create', fetchuser, async (req, res) => {
         let { title, description, tag, isComplete } = req.body;
         //Input Validation
         if (!title) {
-            return res.status(400).json({ error: "please provide a title" });
+            return res.status(400).json({ error: "Please provide a title" });
         }
         if (!description) {
-            return res.status(400).json({ error: "please provide a description" });
+            return res.status(400).json({ error: "Please provide a description" });
         }
 
         //check if the user that has made this request exists
         let user = await userModel.findById(req.user.id);
         if (!user) {
-            return res.status(401).json({ error: "please provide a valid token" });
+            return res.status(401).json({ error: "Please provide a valid token" });
         }
 
         //create the task
@@ -31,10 +31,10 @@ router.post('/create', fetchuser, async (req, res) => {
         await user.save();
 
         // Respond with a consistent format
-        res.status(201).json({ message: "Task created successfully!", success: true, task });
+        res.status(201).json({ message: "Task created!", success: true, task });
     } catch (error) {
         console.log("error creating task: ", error);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ error: "Internal server error!" });
     }
 })
 
@@ -44,17 +44,17 @@ router.get('/alltasks', fetchuser, async (req, res) => {
         //find the user making the request
         let user = await userModel.findById(req.user.id).populate('tasks');
         if (!user) {
-            return res.status(401).json({ error: "please provide a valid token" });
+            return res.status(401).json({ error: "Please provide a valid token" });
         }
 
         //segregate the tasks of the user
         let tasks = user.tasks;
 
         // Respond with a consistent format
-        res.status(200).json({ message: "tasks fetched successfully", tasks });
+        res.status(200).json({ message: "Tasks fetched!", tasks });
     } catch (error) {
         console.log("error fetching tasks: ", error);
-        res.status(500).json({ error: "internal server error" });
+        res.status(500).json({ error: "Internal server error!" });
     }
 })
 
@@ -65,18 +65,18 @@ router.put('/update/:id', fetchuser, async (req, res) => {
         //find the user making the request
         let user = await userModel.findById(req.user.id);
         if (!user) {
-            return res.status(401).json({ error: "please provide a valid token" });
+            return res.status(401).json({ error: "Please provide a valid token!" });
         }
 
         //find the task to be updated
         let task = await taskModel.findOne({ _id: req.params.id });
         if (!task) {
-            return res.status(404).json({ error: "no task found for the given ID" });
+            return res.status(404).json({ error: "No task found for the given ID!" });
         }
 
         //check if the user who created the task is requesting the update
         if (task.user.toString() !== req.user.id) {
-            return res.status(401).json({ error: "not authorized to update this task" });
+            return res.status(401).json({ error: "Not authorized to update this task!" });
         }
 
         //create a new updated task
@@ -103,7 +103,7 @@ router.put('/update/:id', fetchuser, async (req, res) => {
         task = await taskModel.findByIdAndUpdate(req.params.id, { $set: updatedTask }, { new: true });
 
         // Respond with a consistent format
-        res.status(200).json({ message: "Task updated successfully!", success: true, task })
+        res.status(200).json({ message: "Task updated!", success: true, task })
 
     } catch (error) {
         console.log("error updating task: ", error);
@@ -117,18 +117,18 @@ router.delete('/delete/:id', fetchuser, async (req, res) => {
         //find the user making the request
         let user = await userModel.findById(req.user.id);
         if (!user) {
-            return res.status(401).json({ error: "please provide a valid token" });
+            return res.status(401).json({ error: "Please provide a valid token" });
         }
 
         //find the task to be deleted
         let task = await taskModel.findOne({ _id: req.params.id });
         if (!task) {
-            return res.status(404).json({ error: "No task found for the given ID" });
+            return res.status(404).json({ error: "No task found for the given ID!" });
         }
 
         //check if the user who created the task is requesting the update
         if (task.user.toString() !== req.user.id) {
-            return res.status(401).json({ error: "Not authorized to update this task" });
+            return res.status(401).json({ error: "Not authorized to update this task!" });
         }
 
         //delete the task
@@ -144,7 +144,7 @@ router.delete('/delete/:id', fetchuser, async (req, res) => {
         await user.save();
 
         // Respond with a consistent format
-        res.status(200).json({ message: "Task deleted successfully!", success: true, task });
+        res.status(200).json({ message: "Task deleted!", success: true, task });
     } catch (error) {
         console.log("error deleting task: ", error);
         res.status(500).json({ error: "Internal Server Error!" });
@@ -157,18 +157,18 @@ router.put('/mark-completion/:id', fetchuser, async (req, res) => {
         //find the user making the request
         let user = await userModel.findById(req.user.id);
         if (!user) {
-            return res.status(401).json({ error: "please provide a valid token" });
+            return res.status(401).json({ error: "Please provide a valid token" });
         }
 
         //find the task to be updated
         let task = await taskModel.findOne({ _id: req.params.id });
         if (!task) {
-            return res.status(404).json({ error: "no task found for the given ID" });
+            return res.status(404).json({ error: "No task found for the given ID!" });
         }
 
         //check if the user who created the task is requesting the update
         if (task.user.toString() !== req.user.id) {
-            return res.status(401).json({ error: "not authorized to update this task" });
+            return res.status(401).json({ error: "Not authorized to update this task!" });
         }
 
         //update task completion
@@ -178,11 +178,11 @@ router.put('/mark-completion/:id', fetchuser, async (req, res) => {
         await task.save();
 
         // Respond with a consistent format
-        res.status(200).json({ message: "task marked successfully", task })
+        res.status(200).json({ message: "Task toggled!",success: true, task })
 
     } catch (error) {
         console.log("error marking task: ", error);
-        res.status(500).json({ error: "internal server error" });
+        res.status(500).json({ error: "Internal server error!" });
     }
 })
 

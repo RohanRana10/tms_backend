@@ -18,5 +18,5 @@ app.use('/users', require('./routes/users'));
 app.use('/tasks', require('./routes/tasks'));
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`TMS listening on port ${port}`)
 })

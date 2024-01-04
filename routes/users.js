@@ -5,26 +5,25 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const jwtSecret = process.env.JWT_SECRET;
 
-
 //POST route for creating a new user
 router.post('/create', async (req, res) => {
     try {
         let { name, email, password } = req.body;
         //Input Validation
         if (!name) {
-            return res.status(400).json({ error: "please provide a name" });
+            return res.status(400).json({ error: "Please provide a name" });
         }
         if (!email) {
-            return res.status(400).json({ error: "please provide an email" });
+            return res.status(400).json({ error: "Please provide an email" });
         }
         if (!password) {
-            return res.status(400).json({ error: "please provide a password" });
+            return res.status(400).json({ error: "Please provide a password" });
         }
 
         // Check if the email already exists
         let user = await userModel.findOne({ email });
         if (user) {
-            return res.status(400).json({ error: "Email Already Exists!" });
+            return res.status(400).json({ error: "Email already exists!" });
         }
 
         // Hash the password
@@ -45,10 +44,10 @@ router.post('/create', async (req, res) => {
         const authtoken = jwt.sign(data, jwtSecret);
 
         // Respond with a consistent format
-        res.status(201).json({ message: "User created successfully!", success: true, authtoken });
+        res.status(201).json({ message: "Signup Successful!", success: true, authtoken });
     } catch (error) {
         console.error("error creating user: ", error);
-        res.status(500).json({ error: "internal server error" });
+        res.status(500).json({ error: "Internal erver error!" });
     }
 })
 
@@ -71,7 +70,7 @@ router.post('/login', async (req, res) => {
         }
         //verify the password
         const passwordCompare = await bcrypt.compare(password, user.password);
-        if(!passwordCompare){
+        if (!passwordCompare) {
             return res.status(400).json({ error: "Please provide valid credentials!" });
         }
 
@@ -84,10 +83,10 @@ router.post('/login', async (req, res) => {
         const authtoken = jwt.sign(data, jwtSecret);
 
         // Respond with a consistent format
-        res.status(200).json({ message: "User logged in successfully!", success: true, authtoken });
+        res.status(200).json({ message: "Login successful!", success: true, authtoken });
     } catch (error) {
         console.error("error logging in user: ", error);
-        res.status(500).json({ error: "Internal Server Error!" });
+        res.status(500).json({ error: "Internal server srror!" });
     }
 })
 
