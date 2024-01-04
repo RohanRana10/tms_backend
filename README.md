@@ -1,4 +1,4 @@
-# TMS - Task Management System
+# TMS - Task Management System (Backend)
 
 Your Personal Task Management System.
 
@@ -10,7 +10,9 @@ Your Personal Task Management System.
 
 ## About
 
-A handy task management system in which users can create tasks for their reference. This project is built using Express.js and uses MongoDB Atlas as a persistent storage. It features authentication using JSON Web Token and password encryption using Bcrypt.js Library. Users can create, update and delete tasks as per requirement, and access them securely as and when required.
+A handy task management system in which users can create tasks for their reference. This project is built using Express.js and uses MongoDB Atlas as a persistent storage. It features authentication using JSON Web Token and password encryption using Bcrypt.js Library. Users can create, update and delete tasks as per requirement, and access them securely as and when required.  
+
+This repository contains the backend part of the TMS web application. You can refer the frontend part Here: https://github.com/RohanRana10/tms_frontend.git
 
 ## Features
 
