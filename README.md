@@ -29,8 +29,8 @@ Before you begin, ensure you have the following installed on your machine:
 
 ### Clone the Repository
 
-git clone https://github.com/yourusername/yourrepository.git  
-cd yourrepository  
+git clone https://github.com/RohanRana10/tms_backend.git  
+cd tms_backend   
 npm install  
 
 ## Setting up Environment Variables
